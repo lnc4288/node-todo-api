@@ -1,7 +1,7 @@
 // const MongoClient = require('mongodb').MongoClient;
 const {MongoClient, ObjectID} = require('mongodb');
 
-MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
+MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   if (err) {
     return console.log('Unable to connect to mongodb server');
   }
@@ -20,18 +20,18 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
   //   console.log(JSON.stringify(result.ops, undefined, 2));
   // });
 
-  // db.collection('Users').insertOne({
-  //   _id: 123,
-  //   name: 'Luke',
-  //   age: 24,
-  //   location: 'Utah'
-  // }, (err, result) => {
-  //   if (err) {
-  //     return console.log('Unable to connect to User database', err);
-  //   }
+  db.collection('Users').insertOne({
+    _id: 123,
+    name: 'Luke',
+    age: 24,
+    location: 'Utah'
+  }, (err, result) => {
+    if (err) {
+      return console.log('Unable to connect to User database', err);
+    }
 
-  //   console.log(result.ops[0]._id);
-  // });
+    console.log(result.ops[0]._id);
+  });
 
-  client.close();
+  db.close();
 });
